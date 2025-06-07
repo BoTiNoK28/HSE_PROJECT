@@ -1,4 +1,4 @@
-#Алешин Арсений - Secure QR-code Scanner
+# Алешин Арсений - Secure QR-code Scanner
 
 ### Пользовательские сценарии
 
