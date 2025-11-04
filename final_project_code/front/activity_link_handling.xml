@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Заголовок -->
+    <TextView
+        android:id="@+id/scannedData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Scanned data"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/montseratte3"/>
+
+    <!-- Метка Text -->
+    <TextView
+        android:id="@+id/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text"
+        android:textSize="23sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scannedData"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/montseratte3"/>
+
+    <!-- Поле вывода текста -->
+    <TextView
+        android:id="@+id/output_field"
+        android:layout_width="0dp"
+        android:layout_height="94dp"
+        android:background="@color/cardview_light_background"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Text"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/montseratte3"
+        android:textColor="@color/black"/>
+
+    <!-- Кнопки копирования и открытия в браузере -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/copy_button"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="Copy"
+        android:background="@drawable/button_style"
+        app:layout_constraintEnd_toStartOf="@id/browser_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/output_field"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/montseratte3"
+        android:textColor="@color/white"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/browser_button"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="Open in browser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/copy_button"
+        app:layout_constraintTop_toBottomOf="@id/output_field"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/montseratte3"
+        android:textColor="@color/white"
+        android:background="@drawable/button_style"/>
+
+    <!-- Заголовок анализа безопасности -->
+    <TextView
+        android:id="@+id/safetyAnalysis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Safety Analysis"
+        android:textSize="23sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/copy_button"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/montseratte3"/>
+
+    <!-- Яндекс анализ -->
+    <TextView
+        android:id="@+id/yandex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1) Yandex Safe Browsing:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/safetyAnalysis"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/montseratte3"/>
+
+    <TextView
+        android:id="@+id/apiOutput1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="19sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@id/yandex"
+        app:layout_constraintStart_toEndOf="@id/yandex"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/montseratte3"/>
+
+    <!-- Google анализ -->
+    <TextView
+        android:id="@+id/google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2) Google LookUp:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/yandex"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/montseratte3"/>
+
+    <TextView
+        android:id="@+id/apiOutput2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="19sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@id/google"
+        app:layout_constraintStart_toEndOf="@id/google"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/montseratte3"/>
+
+    <!-- AbuseIPDB анализ -->
+    <TextView
+        android:id="@+id/abuse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3) AbuseIPDB:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/google"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/montseratte3"/>
+
+    <TextView
+        android:id="@+id/apiOutput3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="19sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@id/abuse"
+        app:layout_constraintStart_toEndOf="@id/abuse"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/montseratte3"/>
+
+    <!-- Кнопка возврата -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/backBtn"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:text="Back to Main Menu"
+        android:textSize="17dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/abuse"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/montseratte3"
+        android:textColor="@color/white"
+        android:background="@drawable/button_style" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

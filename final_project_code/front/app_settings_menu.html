@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Меню настроек приложения</title>
+    <link rel="stylesheet" href="static/style.css">
+    <style>
+        .content-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .settings-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+        
+        .settings-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+            font-size: 1.8rem;
+        }
+        
+        .section-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+        }
+        
+        .setting-item {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .setting-description {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .language-options {
+            display: flex;
+            gap: 15px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+        
+        .language-option {
+            padding: 8px 16px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 25px;
+            margin: 10px 0;
+        }
+        
+        .toggle-slider {
+            width: 50px;
+            height: 25px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .toggle-slider::after {
+            content: '';
+            position: absolute;
+            width: 21px;
+            height: 21px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .language-note {
+            background: #e8f5e9;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--secondary-color);
+            font-style: italic;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: var(--dark-color);
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 768px) {
+            .settings-card {
+                padding: 20px;
+            }
+            
+            .section-title {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .section-icon {
+                margin-bottom: 10px;
+            }
+            
+            .language-options {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="page_name">Меню настроек приложения</h1>
+            <p class="page_subtitle">Настройте приложение под свои предпочтения</p>
+        </div>
+    </header>
+    
+    <div class="content-section">
+        <div class="settings-card">
+            <h2 class="section-title">
+                <span class="section-icon">🌓</span>
+                Смена темы приложения
+            </h2>
+            
+            <div class="setting-item">
+                <div class="setting-description">
+                    При нажатии на ползунок поменяется оформление приложения (тема)
+                </div>
+                
+                <div class="theme-toggle">
+                    <span>Переключить тему</span>
+                    <div class="toggle-slider"></div>
+                </div>
+                
+                <div class="language-note">
+                    В зависимости от темы текст у ползунка поменяется:<br>
+                    "Светлая"/"Темная" или "Light"/"Dark" (в зависимости от выбранного языка)
+                </div>
+            </div>
+        </div>
+        
+        <div class="settings-card">
+            <h2 class="section-title">
+                <span class="section-icon">🌐</span>
+                Смена языка приложения
+            </h2>
+            
+            <div class="setting-item">
+                <div class="setting-description">
+                    Язык интерфейса поменяется в зависимости от выбранной опции
+                </div>
+                
+                <div class="language-options">
+                    <div class="language-option">Русский</div>
+                    <div class="language-option">English</div>
+                </div>
+                
+                <div class="language-note">
+                    Надписи меняются в зависимости от текущего языка:<br>
+                    "Русский"/"Английский" или "Russian"/"English"
+                </div>
+            </div>
+        </div>
+        
+        <a href="/" class="back-link">← Перейти на главную страницу</a>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2023 Руководство пользователя. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Generate Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/generate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_style"
+        android:fontFamily="@font/montseratte3"
+        android:paddingHorizontal="70dp"
+        android:text="Generate QR-Code"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/saveBtn"
+        android:layout_marginTop="510dp" />
+
+    <!-- Save Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/saveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_style"
+        android:fontFamily="@font/montseratte3"
+        android:paddingHorizontal="30dp"
+        android:text="Save"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="@id/generate"
+        app:layout_constraintTop_toBottomOf="@id/generate"
+        android:layout_marginTop="20dp" />
+
+    <!-- Pattern Color Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/pattetn_colorBtn"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/color_button_style"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="414dp" />
+
+    <!-- Background Color Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/background_colorBtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/color2_button_style"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="74dp"
+        android:layout_marginTop="414dp" />
+
+    <!-- Pattern Text -->
+    <TextView
+        android:id="@+id/color1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montseratte3"
+        android:text="Pattern"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/pattetn_colorBtn"
+        app:layout_constraintEnd_toEndOf="@id/pattetn_colorBtn"
+        app:layout_constraintBottom_toTopOf="@id/pattetn_colorBtn"
+        android:layout_marginBottom="10dp" />
+
+    <!-- Error Message -->
+    <TextView
+        android:id="@+id/error_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montseratte3"
+        android:text="Input field is empty"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="50dp" />
+
+    <!-- Background Text -->
+    <TextView
+        android:id="@+id/color2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montseratte3"
+        android:text="Background"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/background_colorBtn"
+        app:layout_constraintEnd_toEndOf="@id/background_colorBtn"
+        app:layout_constraintBottom_toTopOf="@id/background_colorBtn"
+        android:layout_marginBottom="10dp" />
+
+    <!-- ImageView -->
+
+    <!-- EditText -->
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="330dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:fontFamily="@font/montseratte3"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/main_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Кнопка для тестов"
+            android:background="@drawable/button_style"
+            android:fontFamily="@font/montseratte3"
+            android:layout_marginTop="6dp"
+            android:padding="8dp"
+            android:layout_weight="0.5"
+            android:textColor="@color/white"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/settings_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Кнопка для тестов"
+            android:background="@drawable/button_style"
+            android:fontFamily="@font/montseratte"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="10dp"
+            android:padding="2dp"
+            android:src="@drawable/settings_icon"/>
+    </LinearLayout>
+
+</RelativeLayout>

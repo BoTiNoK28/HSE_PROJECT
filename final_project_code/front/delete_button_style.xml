@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?attr/colorControlHighlight"> <!-- Цвет ripple -->
+
+    <!-- Маска для формы ripple -->
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <corners android:radius="10dp" /> <!-- Такие же скругления! -->
+            <solid android:color="@color/white" /> <!-- Любой цвет, главное - форма -->
+        </shape>
+    </item>
+
+    <!-- Фон кнопки -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="10dp" />
+            <solid android:color="#e2a096" />
+        </shape>
+    </item>
+
+</ripple>
