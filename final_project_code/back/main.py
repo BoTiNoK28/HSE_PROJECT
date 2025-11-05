@@ -4,6 +4,8 @@ from flask import request as flask_requests
 from flask import render_template
 import os
 import flask
+import json
+import socket
 
 app = Flask(__name__)
 
@@ -14,7 +16,7 @@ abus_key = os.getenv('ABUS_API')
 
 link_dict = {'yandex': "https://sba.yandex.net/v4/threatMatches:find?key=",
              'google': "https://safebrowsing.googleapis.com/v4/threatMatches:find?key=",
-             'abuse': ""
+             'abuse': "https://api.abuseipdb.com/api/v2/check"
 }
 
 def check_url_safety(api_key: str, url: str, api_link: str, client_version: str):
@@ -44,21 +46,74 @@ def check_url_safety(api_key: str, url: str, api_link: str, client_version: str)
 
     else:
         return ("error")
+    
 
+def get_ip_by_url(url):
+    domain = url.replace('https://', '').replace('http://', '').split('/')[0]
+    try:
+        ip = socket.gethostbyname(domain)
+        return ip
+    except socket.gaierror as e:
+        return "error"
+    
+def check_url_safety_abuseipdb(api_key: str, link: str, api_link: str):
+    querystring = {
+        'ipAddress': link,
+        'maxAgeInDays': '90'
+    }
+
+    headers = {
+        'Accept': 'application/json',
+        'Key': api_key
+    }
+
+    response = requests.request(method='GET', url=api_link, headers=headers, params=querystring)
+    decodedResponse = json.loads(response.text)
+
+    total_reports = decodedResponse.get('data', {}).get('totalReports')
+    if total_reports is not None and total_reports > 0:
+        return "unsafe"
+    else:
+        return "safe"
+    
+
+check_summary = []
 
 @app.route('/google_api')
-def check_url_google(url):
-	link = flask.requests.args.get('link')
-	return check_url_safety(google_key, link, link_dict['google'], '1.5.2')
+def check_url_google():
+    global check_summary
+    link = flask.requests.args.get('link')
+    r = check_url_safety(google_key, link, link_dict['google'], '1.5.2')
+    check_summary.append(r)
+    return r
 
 @app.route('/yandex_api')
 def yandex_api_function():
+    global check_summary
     link = flask_requests.args.get('link')
-    return check_url_safety(yandex_key, link, link_dict['yandex'], '{1.1.1}')
+    r = check_url_safety(yandex_key, link, link_dict['yandex'], '{1.1.1}')
+    check_summary.append(r)
+    return r
 
 @app.route('/abuseipdb_api')
 def abuseipdb_api_function():
+    global check_summary
     link = flask_requests.args.get('link')
+    r = check_url_safety_abuseipdb(abus_key, get_ip_by_url(link), link_dict['abuse'])
+    check_summary.append(r)
+    return r
+
+@app.route('/summary')
+def summary():
+    global check_summary
+    safe_count = check_summary.count('safe')
+    if (safe_count >= 2):
+        check_summary = []
+        return 'safe'
+    else:
+        check_summary = []
+        return 'unsafe'
+    
 
 @app.route('/')
 def render_user_guide():

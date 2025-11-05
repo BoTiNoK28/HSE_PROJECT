@@ -53,10 +53,14 @@ class LinkHandlingActivity : AppCompatActivity() {
     private lateinit var copy_button: Button
     private lateinit var browser_button: Button
     private lateinit var back_button: Button
+
+    private lateinit var summary: TextView
+    private lateinit var summaryOut: TextView
+
     private lateinit var main: ConstraintLayout
 
-    val ruWord = listOf("Результат Сканирования", "Текст", "Копировать", "Открыть в браузере", "Результат проверки", "Вывод:", "Назад в основное меню")
-    val enWord = listOf("Scanned Data", "Text", "Copy", "Open in browser", "Safety Analysis", "Summary:", "Back to Main Menu")
+    val ruWord = listOf("Результат Сканирования", "Текст", "Копировать", "Открыть в браузере", "Результат проверки", "Вывод:", "Назад в основное меню", "Вывод")
+    val enWord = listOf("Scanned Data", "Text", "Copy", "Open in browser", "Safety Analysis", "Summary:", "Back to Main Menu", "Summmary")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,6 +80,8 @@ class LinkHandlingActivity : AppCompatActivity() {
         yandex = findViewById(R.id.yandex)
         abuse = findViewById(R.id.abuse)
         main = findViewById(R.id.main)
+        summary = findViewById(R.id.summary)
+        summaryOut = findViewById(R.id.summaryOut)
 
 //        setTheme()
         checkLanguage()
@@ -87,8 +93,7 @@ class LinkHandlingActivity : AppCompatActivity() {
             checkLink(intent, "yandex_api")
             checkLink(intent, "google_api")
             checkLink(intent, "abuse_api")
-            write_changes(intent.toString(), "Safe")
-//            setSummary(intent)
+            write_changes(intent.toString(), setSummary(intent))
         }
         registerCopyButtonPress(intent)
     }
@@ -157,6 +162,29 @@ class LinkHandlingActivity : AppCompatActivity() {
         queue.add(stringRequest)
     }
 
+    fun setSummary(link: String?): String {
+        val queue = Volley.newRequestQueue(this)
+        val encodedLink = URLEncoder.encode(link, "UTF-8")
+        var result: String = ""
+        val url = "http://server_ip/summary?link=$encodedLink"
+        val stringRequest = StringRequest(Request.Method.GET, url,
+            Response.Listener<String>{ response ->
+                if (response.toString() == "safe") {
+                    summaryOut.setText("SAFE")
+                    summaryOut.setTextColor(Color.GREEN)
+                    result = "Safe"
+                }
+                else {
+                    summaryOut.setText("UNSAFE")
+                    summaryOut.setTextColor(Color.RED)
+                    result = "Unsafe"
+                }
+            },
+            Response. ErrorListener{ error -> summaryOut.text = "ERROR" })
+        queue.add(stringRequest)
+        return result
+    }
+
     @SuppressLint("SimpleDateFormat")
     private fun write_changes(link: String, summary: String) {
         var elements: MutableList<ButtonGroup> = mutableListOf()
@@ -217,6 +245,7 @@ class LinkHandlingActivity : AppCompatActivity() {
         browser_button.text = ruWord[3]
         safetyAnalysis.text = ruWord[4]
         back_button.text = ruWord[6]
+        summary.text = ruWord[7]
     }
 
     private fun setEnglish() {
@@ -226,6 +255,7 @@ class LinkHandlingActivity : AppCompatActivity() {
         browser_button.text = enWord[3]
         safetyAnalysis.text = enWord[4]
         back_button.text = enWord[6]
+        summary.text = enWord[7]
     }
 /*
     private fun setTheme() {
